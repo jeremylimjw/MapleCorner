@@ -1,0 +1,39 @@
+<div class="bg-biege flex-center-all height-100">
+
+    <div class="spinner-container">
+        <div class="spinner-background"></div>
+
+        <mat-progress-spinner
+            class="spinner"
+            color="primary"
+            mode="determinate"
+            diameter="350"
+            strokeWidth="20"
+            [value]="spinnerValue">
+        </mat-progress-spinner>
+
+        <input [formControl]="counter" (keydown.enter)="handleEnterEvent($event)" (blur)="handleBlurEvent()">
+
+    </div>
+    <div class="button-group">
+        <button mat-raised-button color="primary" (click)="increment(1)">+1</button>
+        <button mat-raised-button color="primary" (click)="increment(2)">+2</button>
+        <button mat-raised-button color="warn" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="history-container">
+        <div *ngFor="let h of historys" class="item">
+            <button mat-raised-button 
+                [color]="h.date.toDateString() === today.toDateString() ? 'primary' : 'warn'" 
+                (mouseenter)="h.showDetails = true" 
+                (mouseleave)="h.showDetails = false">
+                {{ h.text }}
+            </button>
+            <div class="details" *ngIf="h.showDetails">
+                <div>{{ h.date | date: 'h:mm:ss a' }}</div>
+                <div>{{ h.date | dateAgo }}</div>
+            </div>
+        </div>
+    </div>
+
+</div>

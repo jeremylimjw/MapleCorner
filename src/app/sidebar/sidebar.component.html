@@ -1,0 +1,15 @@
+<div class="sidebar" [ngClass]="isOpen ? 'open' : ''">
+    <div class="logo-details">
+        <div class="logo_name">Maple Corner</div>
+        <mat-icon class='bx bx-menu' id="btn" (click)="toggleSidebar()">menu</mat-icon>
+    </div>
+    <ul class="nav-list">
+        <li>
+            <a routerLink="/" routerLinkActive="active">
+                <mat-icon>home</mat-icon>
+                <span class="links_name">Elite Boss Boxes</span>
+            </a>
+            <span class="tooltip">Elite Boss Boxes</span>
+        </li>
+    </ul>
+</div>
