@@ -25,6 +25,14 @@ export class HomeComponent implements OnInit {
 
     this.counter.setValue(this.storageService.getCounter());
     this.historys = this.storageService.getHistorys();
+
+    /** Update 'today' variable if a new day passes. */
+    setInterval(() => {
+      const now = new Date();
+      if (now.toDateString() !== this.today.toDateString()) {
+        this.today = now;
+      }
+    }, 60*1000)
   }
 
   /** Increment counter by i */
