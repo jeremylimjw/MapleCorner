@@ -62,7 +62,8 @@
 
 .history-container .tooltip {
     position: absolute;
-    top: -20px;
+    top: 0;
+    width: 130px;
     right: calc(100% + 10px);
     z-index: 3;
     background: #fff;
@@ -70,16 +71,4 @@
     padding: 6px 12px;
     border-radius: 4px;
     font-size: 15px;
-    opacity: 0;
-    white-space: nowrap;
-    pointer-events: none;
-    transition: 0s;
-}
-
-.history-container .item:hover .tooltip {
-    opacity: 1;
-    pointer-events: auto;
-    transition: all 0.4s ease;
-    top: 50%;
-    transform: translateY(-50%);
 }

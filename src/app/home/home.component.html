@@ -33,11 +33,13 @@
     <div class="history-container">
         <div *ngFor="let h of historys" class="item">
             <button mat-raised-button 
-                [color]="h.date.toDateString() === today.toDateString() ? 'primary' : 'warn'">
+                [color]="h.date.toDateString() === today.toDateString() ? 'primary' : 'warn'"
+                (mouseenter)="h.showTooltip = true"
+                (mouseleave)="h.showTooltip = false">
                 {{ h.text }}
             </button>
-            <div class="tooltip">
-                <div>{{ h.date | date: 'h:mm:ss a' }}</div>
+            <div class="tooltip" *ngIf="h.showTooltip">
+                <div>{{ h.date | date: 'h:MM:ss a' }}</div>
                 <div>{{ h.date | dateAgo }}</div>
             </div>
         </div>
