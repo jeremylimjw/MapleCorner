@@ -134,3 +134,7 @@ mat-icon {
     display: none;
   }
 }
+
+.mat-icon {
+    user-select: none;
+}

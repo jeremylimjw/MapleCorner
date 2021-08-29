@@ -4,12 +4,12 @@
         <mat-icon class='bx bx-menu' id="btn" (click)="toggleSidebar()">menu</mat-icon>
     </div>
     <ul class="nav-list">
-        <li>
-            <a routerLink="/" routerLinkActive="active">
-                <mat-icon>home</mat-icon>
-                <span class="links_name">Elite Boss Boxes</span>
+        <li *ngFor="let link of links">
+            <a [routerLink]="link.routerLink" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <mat-icon>{{ link.matIcon }}</mat-icon>
+                <span class="links_name">{{ link.name }}</span>
             </a>
-            <span class="tooltip">Elite Boss Boxes</span>
+            <span class="tooltip">{{ link.name }}</span>
         </li>
     </ul>
 </div>

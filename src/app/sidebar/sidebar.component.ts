@@ -9,6 +9,18 @@ import { StorageService } from '../services/storage.service';
 export class SidebarComponent implements OnInit {
 
   isOpen: boolean = false;
+  links = [
+    {
+      routerLink: "",
+      matIcon: "home",
+      name: "Elite Boss boxes"
+    },
+    {
+      routerLink: "timer",
+      matIcon: "timer",
+      name: "Timer/Stopwatch"
+    }
+  ]
 
   constructor(private storageService: StorageService) { }
 

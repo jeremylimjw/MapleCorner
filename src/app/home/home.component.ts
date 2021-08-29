@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { interval, Subscription } from 'rxjs';
 import { History } from '../models';
 import { StorageService } from '../services/storage.service';
 
@@ -8,12 +9,13 @@ import { StorageService } from '../services/storage.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   counter: FormControl = new FormControl(0);
   spinnerValue: number = 0;
   historys: History[] = [];
   today: Date = new Date();
+  interval!: Subscription;
 
   constructor(private storageService: StorageService) { }
 
@@ -27,12 +29,17 @@ export class HomeComponent implements OnInit {
     this.historys = this.storageService.getHistorys();
 
     /** Update 'today' variable if a new day passes. */
-    setInterval(() => {
+    this.interval = interval(60*1000).subscribe(() => {
       const now = new Date();
       if (now.toDateString() !== this.today.toDateString()) {
         this.today = now;
       }
-    }, 60*1000)
+    })
+  }
+
+  ngOnDestroy(): void {
+    /** Terminate interval on page leave. */
+    this.interval.unsubscribe();
   }
 
   /** Increment counter by i */
