@@ -1,0 +1,77 @@
+<div class="bg-biege flex-center-all height-100">
+
+    <div *ngIf="timer.progress == 100" class="pulse-animation"></div>
+
+    <mat-tab-group class="main-container" animationDuration="0ms" mat-stretch-tabs>
+
+        <mat-tab>
+
+            <ng-template mat-tab-label>
+              <mat-icon>hourgla ss_bottom</mat-icon>&nbsp;Timer
+            </ng-template>
+
+            <div class="inner-container">
+
+                <div class="text-container" [ngClass]="{ 'blinking': timer.progress == 100 }" (click)="openDialog()">
+
+                    <ng-container *ngIf="timer.hours">
+                        <span>{{ timer.hours }}</span><span class="unit">h</span>
+                    </ng-container>
+
+                    <ng-container *ngIf="timer.minutes || timer.hours">
+                        <span>{{ timer.hours > 0 ? (timer.minutes | number: '2.0') : timer.minutes }}</span><span class="unit">m</span>
+                    </ng-container>
+
+                    <span>{{ timer.seconds | number: '2.0' }}</span><span class="unit">s</span>
+
+                </div>
+
+                <mat-progress-bar class="mt-auto" mode="determinate" 
+                    [value]="timer.progress">
+                </mat-progress-bar>
+
+                <div class="button-group">
+
+                    <button mat-stroked-button color="primary" (click)="toggleTimer()" [disabled]="timer.progress == 100">{{ timer.isRunning ? 'Stop' : 'Start' }}</button>
+                    <button mat-stroked-button color="warn" (click)="resetTimer()">Reset</button>
+
+                    <div class="control-group">
+                        <mat-icon class="control" (click)="timer.isMuted = !timer.isMuted" [ngClass]="{ 'active' : !timer.isMuted }">{{ timer.isMuted ? 'volume_off' : 'volume_up' }}</mat-icon>
+                        <span class="tooltip">Volume is {{ timer.isMuted ? 'off' : 'on' }}</span>
+                        <mat-icon class="control" (click)="timer.isLoop = !timer.isLoop" [ngClass]="{ 'active' : timer.isLoop }">repeat</mat-icon>
+                        <span class="tooltip">Loop is {{ timer.isLoop ? 'on' : 'off' }}</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon>timer</mat-icon>&nbsp;Stopwatch
+            </ng-template>
+
+            <div class="inner-container">
+                <div class="text-container">
+                    <ng-container *ngIf="stopwatch.hours">
+                        <span>{{ stopwatch.hours }}</span><span class="unit">h</span>
+                    </ng-container>
+                    <ng-container *ngIf="stopwatch.minutes">
+                        <span>{{ stopwatch.minutes }}</span><span class="unit">m</span>
+                    </ng-container>
+                    <span>{{ stopwatch.seconds }}</span><span class="unit">s</span>
+                    <span class="ms">{{ stopwatch.miliseconds | number: '2.0' }}</span>
+                </div>
+                <div class="button-group mt-auto">
+                    <button mat-stroked-button color="primary" (click)="toggleStopwatch()">{{ stopwatch.isRunning ? 'Stop' : 'Start' }}</button>
+                    <button mat-stroked-button color="warn" (click)="resetStopwatch()">Reset</button>
+                </div>
+            </div>
+
+        </mat-tab>
+
+    </mat-tab-group>
+
+</div>

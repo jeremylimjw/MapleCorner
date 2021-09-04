@@ -14,6 +14,17 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+
+import { TimerComponent } from './timer/timer.component';
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomReuseStrategy } from './custom-route-reuse-strategy';
+import { ChangeTimerDialogComponent } from './timer/change-timer-dialog/change-timer-dialog.component';
 
 
 @NgModule({
@@ -21,7 +32,9 @@ import { MatIconModule } from '@angular/material/icon';
     AppComponent,
     HomeComponent,
     SidebarComponent,
-    DateAgoPipe
+    DateAgoPipe,
+    TimerComponent,
+    ChangeTimerDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +44,17 @@ import { MatIconModule } from '@angular/material/icon';
     MatSidenavModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule,
+    MatProgressBarModule,
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
-  providers: [],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: CustomReuseStrategy }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
