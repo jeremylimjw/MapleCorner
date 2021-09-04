@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { History } from '../models';
+import { History, Time } from '../models';
 
 const SIDEBAR_KEY = "isSideBarOpened";
 const COUNTER_KEY = "counter";
 const HISTORYS_KEY = "historys";
+const TIMER_KEY = "timer";
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,20 @@ export class StorageService {
 
   setHistorys(historys: History[]): void {
     this.setToLocalStorage(HISTORYS_KEY, historys);
+  }
+
+  getTimer(): Time {
+    let value = this.getFromLocalStorage(TIMER_KEY);
+    if (value === null) {
+      value = { hours: 0, minutes: 5, seconds: 0 };
+      this.setToLocalStorage(TIMER_KEY, value);
+    }
+
+    return value;
+  }
+
+  setTimer(timer: Time): void {
+    this.setToLocalStorage(TIMER_KEY, timer);
   }
 
   private getFromLocalStorage(key: string): any | null {

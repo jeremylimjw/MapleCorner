@@ -1,0 +1,59 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 95px;
+}
+
+.text-container {
+    box-sizing: border-box;
+    position: relative;
+    display: inline-block;
+    margin: auto;
+    font-size: 62px;
+    line-height: 1em;
+    padding-top: 20px;
+}
+
+.number-input {
+    position: absolute;
+    height: 0px;
+    width: 0;
+    opacity: 0;
+    z-index: -2;
+}
+
+.trailing {
+    color: grey;
+}
+
+.ms {
+    font-size: 35px;
+}
+
+.animated-cursor {
+    position: absolute;
+    right: -5px;
+    border-right: 1px solid #000;
+    font-size: 62px;
+    width: 38px;
+    height: 1em;
+    animation: 1s blink step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.underline {
+    position: absolute;
+    width: 300px;
+    bottom: 0;
+    left: 0;
+    border-bottom: 2px solid #3f51b5;
+}

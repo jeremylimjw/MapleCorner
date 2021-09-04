@@ -30,10 +30,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     /** Update 'today' variable if a new day passes. */
     this.interval = interval(60*1000).subscribe(() => {
-      const now = new Date();
-      if (now.toDateString() !== this.today.toDateString()) {
-        this.today = now;
-      }
+      setInterval(() => {
+        const now = new Date();
+        if (now.toDateString() !== this.today.toDateString()) {
+          this.today = now;
+        }
+      }, 60*1000)
     })
   }
 

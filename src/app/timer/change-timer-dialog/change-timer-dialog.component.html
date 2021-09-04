@@ -1,0 +1,41 @@
+<h1 mat-dialog-title align=middle>Edit timer</h1>
+
+<form>
+    <div mat-dialog-content class="container">
+
+        <div class="text-container" (click)="input.focus()">
+
+            <ng-container *ngIf="inputValue">
+                <span [ngClass]="{ 'trailing' : hours == 0 }">{{ hours | number: '2.0'  }}</span>
+                <span class="ms" [ngClass]="{ 'trailing' : hours == 0 }">h </span>
+                <span [ngClass]="{ 'trailing' : minutes == 0 && hours == 0 }">{{ minutes | number: '2.0' }}</span>
+                <span class="ms" [ngClass]="{ 'trailing' : minutes == 0 && hours == 0 }">m </span>
+                <span [ngClass]="{ 'trailing' : seconds == 0 && minutes == 0 && hours == 0 }">{{ seconds | number: '2.0'  }}</span>
+                <span class="ms" [ngClass]="{ 'trailing' : seconds == 0 && minutes == 0 && hours == 0 }">s </span>
+            </ng-container>
+
+            <ng-container *ngIf="!inputValue">
+                <span class="trailing">{{ data.initial.hours | number: '2.0'  }}</span>
+                <span class="trailing ms">h </span>
+                <span class="trailing">{{ data.initial.minutes | number: '2.0' }}</span>
+                <span class="trailing ms">m </span>
+                <span class="trailing">{{ data.initial.seconds | number: '2.0'  }}</span>
+                <span class="trailing ms">s </span>
+            </ng-container>
+            
+            <span *ngIf="editMode" class="animated-cursor"></span>
+            <span *ngIf="editMode" class="underline"></span>
+        </div>
+
+        <input matInput #input class="number-input" name="hours" type="number" style="text-align: right;"
+            (focus)="editMode = true" (blur)="editMode = false"
+            [ngModel]="inputValue" (ngModelChange)="handleInputChange($event)">
+
+    </div>
+    
+    
+    <div mat-dialog-actions align="end">
+        <button mat-stroked-button type="button" (click)="dialogRef.close()" style="margin-right: 10px;">Close</button>
+        <button mat-stroked-button type="submit" color="primary" [mat-dialog-close]="{ hours: hours, minutes: minutes, seconds: seconds }">Save</button>
+    </div>
+</form>
