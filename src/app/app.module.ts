@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 
@@ -14,17 +16,23 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
+import { MatTableModule } from '@angular/material/table';
 
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomReuseStrategy } from './custom-route-reuse-strategy';
 
 import { ChangeTimerDialogComponent } from './timer/change-timer-dialog/change-timer-dialog.component';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TimerComponent } from './timer/timer.component';
+import { SeedComponent } from './seed/seed.component';
+import { Floor24Component } from './seed/floor24/floor24.component';
+import { Floor39Component } from './seed/floor39/floor39.component';
+import { Floor47Component } from './seed/floor47/floor47.component';
+import { Floor23Component } from './seed/floor23/floor23.component';
+import { Floor42Component } from './seed/floor42/floor42.component';
 
 
 
@@ -35,7 +43,13 @@ import { TimerComponent } from './timer/timer.component';
     SidebarComponent,
     DateAgoPipe,
     TimerComponent,
-    ChangeTimerDialogComponent
+    ChangeTimerDialogComponent,
+    SeedComponent,
+    Floor23Component,
+    Floor24Component,
+    Floor39Component,
+    Floor42Component,
+    Floor47Component,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +65,9 @@ import { TimerComponent } from './timer/timer.component';
     FormsModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    NgxAudioPlayerModule,
+    MatTableModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: CustomReuseStrategy }

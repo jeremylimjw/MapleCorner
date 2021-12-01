@@ -19,6 +19,11 @@ export class SidebarComponent implements OnInit {
       routerLink: "timer",
       matIcon: "timer",
       name: "Timer/Stopwatch"
+    },
+    {
+      routerLink: "seed",
+      matIcon: "castle",
+      name: "Seed"
     }
   ]
 
